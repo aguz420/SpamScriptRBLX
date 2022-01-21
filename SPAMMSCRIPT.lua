@@ -3,7 +3,7 @@
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local args = {
-    [1] = "a",
+    [1] = nil,
     [2] = "All"
 }
 
@@ -54,6 +54,7 @@ MainSection:NewToggle("Spam", "Spams non stop until you toggle it off", function
 	getgenv().Spamming = v
 	
 	if v == true then
+		if getgenv().SpamWord == nil then sendMssg({Title = "Error", "The string is nil, please enter a string of your choice."}) return end
 		spam()
 	end
 end)
