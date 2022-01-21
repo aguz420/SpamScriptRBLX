@@ -56,7 +56,11 @@ MainSection:NewTextBox("Spam Duration", "Spams every second default is "..getgen
 		getgenv().SpamDuration = v
 		sendMssg({Title = "Success!", Text = "Succesfully changed the spam duration to "..v})
 	else
-		sendMssg({Title = "Error", Text = "You need to put a number not a string"})
+		if v:len() > 1 then
+			sendMssg({Title = "Error", Text = "You need to put a number not a letter"})
+		else
+			sendMssg({Title = "Error", Text = "You need to put a number not a word"})
+		end
 	end
 end)
 
