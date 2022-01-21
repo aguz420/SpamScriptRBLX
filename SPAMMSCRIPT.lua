@@ -76,7 +76,3 @@ end)
 KeybindSection:NewKeybind("Toggle UI", "Toggles UI", Enum.KeyCode.One, function()
 	Library:ToggleUI()
 end)
-
-MainSection:NewButton("View Settings", "View your settings", function()
-    sendMssg({Title = "View Settings", Text = "Spam Word",getgenv().SpamWord, "\n Spamming Duration",getgenv().SpamDuration})
-end)
