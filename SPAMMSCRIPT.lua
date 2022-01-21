@@ -39,6 +39,9 @@ local MainSection = MainTab:NewSection("Main")
 local CreditsTab = Window:NewTab("Credits")
 local CreditsSection = CreditsTab:NewSection("Script made by aguz5980you\nUsed with Kavo UI")
 
+local KeybindTab = Window:NewTab("Keybind")
+local KeybindSection = KeybindTab:NewSection("Keybind")
+
 MainSection:NewToggle("Spam", "Spams non stop until you toggle it off", function(v)
 	getgenv().Spamming = v
 	
@@ -59,4 +62,8 @@ end)
 MainSection:NewTextBox("Spam Text", "Spams the word you are gonna say", function (v)
 	getgenv().SpamWord = v
 	sendMssg({Title = "Success!", Text = "That letter you are gonna spam when toggled is "..v})
+end)
+
+KeybindSection:NewKeybind("Toggle UI", "Toggles UI", Enum.KeyCode.One, function()
+	Library:ToggleUI()
 end)
