@@ -36,11 +36,12 @@ local Window = Library.CreateLib("SPAM", "Ocean")
 local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 
-local CreditsTab = Window:NewTab("Credits")
-local CreditsSection = CreditsTab:NewSection("Script made by aguz5980you\nUsed with Kavo UI")
 
 local KeybindTab = Window:NewTab("Keybind")
 local KeybindSection = KeybindTab:NewSection("Keybind")
+
+local CreditsTab = Window:NewTab("Credits")
+local CreditsSection = CreditsTab:NewSection("Script made by aguz5980you\nUsed with Kavo UI")
 
 MainSection:NewToggle("Spam", "Spams non stop until you toggle it off", function(v)
 	getgenv().Spamming = v
