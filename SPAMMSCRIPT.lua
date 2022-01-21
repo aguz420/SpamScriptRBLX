@@ -11,13 +11,21 @@ getgenv().Spamming = false
 getgenv().SpamDuration = 1.5
 getgenv().SpamWord = "Society and its Future"
 
+local playerChat;
+
+for i, v in pairs(game:service"ReplicatedStorage":GetDescendants()) do
+	if v.Name:lower() == "saymessagerequest" then
+		playerChat = v
+	end
+end
+
 ------------------------------------------------------------------
 
 function spam()
 	spawn(function()
 		while getgenv().Spamming do
 			args[1] = getgenv().SpamWord
-			game:service"ReplicatedStorage".DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+			playerChat:FireServer(unpack(args))
 			wait(getgenv().SpamDuration)
 		end
 	end)
@@ -36,12 +44,11 @@ local Window = Library.CreateLib("SPAM", "Ocean")
 local MainTab = Window:NewTab("Main")
 local MainSection = MainTab:NewSection("Main")
 
+local CreditsTab = Window:NewTab("Credits")
+local CreditsSection = CreditsTab:NewSection("Script made by aguz5980you\nUsed with Kavo UI")
 
 local KeybindTab = Window:NewTab("Keybind")
 local KeybindSection = KeybindTab:NewSection("Keybind")
-
-local CreditsTab = Window:NewTab("Credits")
-local CreditsSection = CreditsTab:NewSection("Script made by aguz5980you\nUsed with Kavo UI")
 
 MainSection:NewToggle("Spam", "Spams non stop until you toggle it off", function(v)
 	getgenv().Spamming = v
@@ -56,11 +63,7 @@ MainSection:NewTextBox("Spam Duration", "Spams every second default is "..getgen
 		getgenv().SpamDuration = v
 		sendMssg({Title = "Success!", Text = "Succesfully changed the spam duration to "..v})
 	else
-		if v:len() > 1 then
-			sendMssg({Title = "Error", Text = "You need to put a number not a letter"})
-		else
-			sendMssg({Title = "Error", Text = "You need to put a number not a word"})
-		end
+		sendMssg({Title = "Error", Text = "You need to put a number not a string"})
 	end
 end)
 
